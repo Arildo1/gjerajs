@@ -50,6 +50,7 @@
 
         <div class="goThrough" id="Div0">
             <div id="startOfPath" style="border: solid;">
+                <input type="text" id="inputAlpha" onmouseout="updateText()">
                 <p  id="beginTrip">Form is emptiness...</p>
             </div>
             <div id="middleStops" style="border: solid">
@@ -59,6 +60,7 @@
                 <br>
             </div>
             <div id="endOfPath" style="border: solid;">
+                <input type="text" id="inputOmega" onmouseout="updateText()">
                 <p id="endTrip">Emptiness is form...</p>
             </div>
             <button id="fward1" onclick="goToNextPage()" > Para </button>
@@ -138,6 +140,7 @@
         idUniques = idUniques+1;
         document.getElementById('divSpecial').appendChild(contDiv);
         document.getElementById('middleRoad').appendChild(toSummarise);
+
     }
 
     var numeron = 0;
@@ -249,6 +252,15 @@
     $("*[id*='carryOver']").each(function (i, el) {
         document.getElementById("carryOver" + i).innerHTML = document.getElementById("sendOver" + i).innerHTML;
     });
+
+    function updateText(){
+        var x = document.getElementById("inputAlpha").innerText;
+        var y = document.getElementById("inputOmega").innerText;
+        if(x!=null || ''){
+        document.getElementById("theStartPath").innerHTML = x;}
+        if(y!=null|| ''){
+        document.getElementById("theEndPath").innerHTML = y;}
+    }
 
     document.getElementById("theStartPath").innerText = document.getElementById("beginTrip").innerText;
     document.getElementById("theEndPath").innerText = document.getElementById("endTrip").innerText;
