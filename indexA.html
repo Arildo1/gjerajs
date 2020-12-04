@@ -50,7 +50,7 @@
 
         <div class="goThrough" id="Div0">
             <div id="startOfPath" style="border: solid;">
-                <p>Form is emptiness...</p>
+                <p  id="beginTrip">Form is emptiness...</p>
             </div>
             <div id="middleStops" style="border: solid">
                 <button  onclick="newPath()">+</button>
@@ -59,7 +59,7 @@
                 <br>
             </div>
             <div id="endOfPath" style="border: solid;">
-                <p>Emptiness is form...</p>
+                <p id="endTrip">Emptiness is form...</p>
             </div>
             <button id="fward1" onclick="goToNextPage()" > Para </button>
         </div>
@@ -77,6 +77,15 @@
     </div>
     <div id="summary" style=" width: 500px; z-index: 1;  float: right; border: solid black;overflow: auto;">
         <p> Here is what you have selected</p>
+        <div id="startFinal">
+            <p id="theStartPath"></p>
+        </div>
+        <div id="middleRoad">
+
+        </div>
+        <div id="endFinal">
+            <p id="theEndPath"></p>
+        </div>
     </div>
 </div>
 
@@ -128,7 +137,7 @@
 
         idUniques = idUniques+1;
         document.getElementById('divSpecial').appendChild(contDiv);
-        document.getElementById('summary').appendChild(toSummarise);
+        document.getElementById('middleRoad').appendChild(toSummarise);
     }
 
     var numeron = 0;
@@ -240,5 +249,8 @@
     $("*[id*='carryOver']").each(function (i, el) {
         document.getElementById("carryOver" + i).innerHTML = document.getElementById("sendOver" + i).innerHTML;
     });
+
+    document.getElementById("theStartPath").innerText = document.getElementById("beginTrip").innerText;
+    document.getElementById("theEndPath").innerText = document.getElementById("endTrip").innerText;
 </script>
 </html>
