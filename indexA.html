@@ -139,7 +139,7 @@
         idUniques = idUniques+1;
         document.getElementById('divSpecial').appendChild(contDiv);
         document.getElementById('middleRoad').appendChild(toSummarise);
-
+        drag();
     }
 
     var numeron = 0;
@@ -183,10 +183,7 @@
         }
     }
 
-
-    // newd&d
-    document.addEventListener('DOMContentLoaded', (event) => {
-
+    function drag() {
         var dragSrcEl = null;
 
         function handleDragStart(e) {
@@ -247,7 +244,11 @@
             item.addEventListener('drop', handleDrop, false);
             item.addEventListener('dragend', handleDragEnd, false);
         });
-    });
+    }
+
+
+    // newd&d
+
     $("*[id*='carryOver']").each(function (i, el) {
         document.getElementById("carryOver" + i).innerHTML = document.getElementById("sendOver" + i).innerHTML;
     });
