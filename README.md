@@ -15,4 +15,5 @@ Funksionalitete per te shtuar:
   2) Nese divet e shkembyeshme tek divi qendror ndryshojne vendet, permbajtjet perkatese tek divi anesor gjithashtu duhet te ndyshojne vendet.
 
 Tools qe kam gjetur:
+
 https://shopify.github.io/draggable/examples/flexbox.html
