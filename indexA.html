@@ -53,6 +53,7 @@
         <div class="goThrough" id="Div0">
            <div style="border: solid blue; float: left; width: 700px">
                <div id="startOfPath" style="border: solid;">
+                   <label for="inputAlpha">Street Name</label>
                    <input type="text" id="inputAlpha" onkeyup="updateText()">
                    <p  id="beginTrip">Form is emptiness...</p>
                </div>
@@ -63,6 +64,7 @@
                    <br>
                </div>
                <div id="endOfPath" style="border: solid;">
+                   <label for="inputOmega">StreetName</label>
                    <input type="text" id="inputOmega" onkeyup="updateText()">
                    <p id="endTrip">Emptiness is form...</p>
                </div>
@@ -120,13 +122,15 @@
         var placeHolder = document.createTextNode("Some random text" + idUniques);
         toSummarise.appendChild(placeHolder);
         toSummarise.setAttribute("id", "carryOver" + idUniques);
-        toSummarise.setAttribute("class", "box")
+        toSummarise.setAttribute("class", "box");
+        toSummarise.setAttribute("draggable", "true");
         textInputA.setAttribute("type", "text");
         textInputA.setAttribute("id", "sendOver" + idUniques);
         textInputA.addEventListener("onkeyup", function (){
-            var z =  document.getElementById("sendOver"+ idUniques);
+            var z =  this.value;
+            var c = idUniques;
             console.log(z);
-            document.getElementById("carryOver" + idUniques).innerHTML = z;
+            document.getElementById("carryOver" + c).innerHTML = z;
         })
         para.appendChild(attrPara);
         contDiv.appendChild(para);
@@ -153,7 +157,7 @@
 
         document.getElementById('divSpecial').appendChild(contDiv);
         document.getElementById('middleRoad').appendChild(toSummarise);
-        drag(idUniques);
+        drag();
         idUniques = idUniques+1;
     }
 
@@ -198,21 +202,22 @@
         }
     }
 
-    function drag(number) {
+    function drag() {
         var dragSrcEl = null;
-        var dragSrcSum = null;
-        var secondWind = document.getElementById("carryOver" + number);
+
 
         function handleDragStart(e) {
             this.style.opacity = '0.4';
-            secondWind.style.opacity = '0.4';
+
 
             dragSrcEl = this;
-            dragSrcSum = secondWind;
+
 
             e.dataTransfer.effectAllowed = 'move';
-            e.dataTransfer.setData('text/html', this.innerHTML);
-            e.dataTransfer.setData('text/html', secondWind.innerHTML);
+            e.dataTransfer.dropEffect = 'move';
+            e.dataTransfer.setData('text/html ', this.innerHTML);
+
+
         }
 
         function handleDragOver(e) {
@@ -242,17 +247,13 @@
                 dragSrcEl.innerHTML = this.innerHTML;
                 this.innerHTML = e.dataTransfer.getData('text/html');
             }
-            if (dragSrcSum != secondWind) {
-                dragSrcSum.innerHTML = secondWind.innerHTML;
-                secondWind.innerHTML = e.dataTransfer.getData('text/html');
-            }
 
             return false;
         }
 
         function handleDragEnd(e) {
             this.style.opacity = '1';
-            secondWind.style.opacity = '1';
+
 
             items.forEach(function (item) {
                 item.classList.remove('over');
@@ -291,4 +292,3 @@
     //document.getElementById("theEndPath").innerText = document.getElementById("endTrip").innerText;
 </script>
 </html>
-    
