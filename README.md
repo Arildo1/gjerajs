@@ -16,4 +16,4 @@ Funksionalitete per te shtuar:
 
 Tools qe kam gjetur:
 
-  https://shopify.github.io/draggable/examples/flexbox.html
+  	https://shopify.github.io/draggable/examples/flexbox.html
