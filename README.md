@@ -13,3 +13,6 @@ Funksionalitete per te shtuar:
   1) Permbajtjet e divit qendror duhet te reflektohen ted divi anesor ne menyre te permbledhur.
   
   2) Nese divet e shkembyeshme tek divi qendror ndryshojne vendet, permbajtjet perkatese tek divi anesor gjithashtu duhet te ndyshojne vendet.
+
+Tools qe kam gjetur:
+https://shopify.github.io/draggable/examples/flexbox.html
