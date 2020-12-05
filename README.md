@@ -6,7 +6,9 @@ Bugs:
   kopjoje permabjtej e divit tjeter (ose njeri div i mbivendos permbajtjen e vet divit tjeter). Me pas, cdo div tjeter qe behet swap me divin e pare ose te dyte ose do 
   marre vleren e divit te pare ose te dyte, ose do i jave vleren e vet divit te pare ose te dyte (ne varesi se me ke po behet swap).
   
-  2) Divet qe nderrojne vendet humbasin funksinalitetet e butonit per fshirjen e divit.
+  2) Kur nderrojne vendet divet, nuk nderrojne vendet permbajtjet e diveve.
+  
+  3) Divet qe nderrojne vendet humbasin funksinalitetet e butonit per fshirjen e divit.
   
 Funksionalitete per te shtuar:
 
