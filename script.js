@@ -49,6 +49,22 @@ function addElement() { //add draggable divs
         // alert('test '+but.id);
         div.remove();
         para2.remove();
+    
+    div.onmouseup = function () {
+        var summaryArray = [];
+        var units;
+        setTimeout(function(){
+            for(let i=1;i<units.length;i++)
+            {
+                var toSlice = units[i].id;
+                var unitsList = parseInt(toSlice.slice(
+                    toSlice.indexOf('-' + units.length),units[i].length));
+                summaryArray.push(unitsList);
+            }
+
+        }, 5);
+    }
+        
     };
     //append children
     div.appendChild(para);
