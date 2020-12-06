@@ -54,6 +54,7 @@ function addElement() { //add draggable divs
         var summaryArray = [];
         var units;
         setTimeout(function(){
+            units = ul.childNodes;
             for(let i=1;i<units.length;i++)
             {
                 var toSlice = units[i].id;
