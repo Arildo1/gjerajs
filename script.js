@@ -1,7 +1,25 @@
-$( function() { //jQueryUI stuff
-    $( '#sortable' ).sortable();
-    $( '#sortable' ).disableSelection();
-} );
+$(function () { //jQueryUI stuff
+    $('#sortable').sortable({
+        // change: function (event, ui) {
+        //     rearrangeSidePanel()
+        // },
+        start: function (event, ui) {
+            iBefore = ui.item.index();
+        },
+        update: function (event, ui) {
+            iAfter = ui.item.index();
+            evictee = $('#div-rightM p:eq(' + iAfter + ')');
+            evictor = $('#div-rightM p:eq(' + iBefore + ')');
+
+            evictee.replaceWith(evictor);
+            if (iBefore > iAfter)
+                evictor.after(evictee);
+            else
+                evictor.before(evictee);
+        }
+    });
+    $('#sortable').disableSelection();
+});
 
 function updateTopBotInputs(num) {
     var input, para;
