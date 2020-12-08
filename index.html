@@ -30,10 +30,11 @@
                        <label for="input-middleT">Top input</label>
                        <input type="text" id="input-middleT" onkeyup="updateTopBotInputs(0)">
                        <div id="div-middleM">
-                           <button onclick="addElement()">+</button><br>
+                        <button onclick="addElement(false)">+</button><br>
                            <ul id="sortable">
 
                            </ul>
+                           <button onclick="addElement(true)">+</button><br>
                        </div>
                        <label for="input-middleB">Bottom input</label>
                        <input type="text" id="input-middleB" onkeyup="updateTopBotInputs(1)">

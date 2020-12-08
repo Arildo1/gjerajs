@@ -26,6 +26,8 @@ $(function () { //jQueryUI stuff
                 evictor.after(evictee);
             else
                 evictor.before(evictee);
+
+            renameDivs();
         }
     });
     $('#sortable').disableSelection();
@@ -33,7 +35,7 @@ $(function () { //jQueryUI stuff
 
 function updateTopBotInputs(num) {
     var input, para;
-    if(num === 0) { //first input
+    if (num === 0) { //first input
         input = document.getElementById('input-middleT');
         para = document.getElementById('p-rightT');
         para.innerText = input.value;
@@ -47,7 +49,7 @@ function updateTopBotInputs(num) {
         para.innerText = "Placeholder";
 }
 var incrementalID = 0;
-function addElement() { //add draggable divs
+function addElement(addBelow) { //add draggable divs
     //get parents
     var ul = document.getElementById('sortable'); //draggable divs parent
     var parentDiv = document.getElementById('div-rightM'); //right paragraphs parent
@@ -118,8 +120,9 @@ function addElement() { //add draggable divs
     //add attributes - parents first
 
     bigDiv.classList.add('ui-state-default');
-    bigDiv.id = 'div-'+incrementalID;
-    bigDivTitleHx.innerText = 'stop nr' + (incrementalID +1);
+    bigDiv.id = 'div-' + incrementalID;
+    bigDivTitle.id = 'div-' + incrementalID+'-title';
+    bigDivTitleHx.innerText = 'stop nr' + (incrementalID + 1);
     // para.innerText = 'Test paragraph '+incrementalID;
     // para.id = 'para-'+incrementalID;
     // // para2.classList.add('ui-state-default');
@@ -131,7 +134,7 @@ function addElement() { //add draggable divs
     but.id = incrementalID;
     //event listeners
     // bigDivTitleHx.onkeyup = function () {  //updates right para to match middle inputs
-        sideTitle.innerText = bigDivTitleHx.innerText;
+    sideTitle.innerText = bigDivTitleHx.innerText;
     // }
     addressInput.onchange = function () { //updates right para to match middle inputs
         sideInput1.innerText = addressInput.value;
@@ -161,7 +164,7 @@ function addElement() { //add draggable divs
         sideInput9.innerText = endTimeDivInput.value;
     }
 
-    but.onclick = function() { //removes div and right input associated
+    but.onclick = function () { //removes div and right input associated
         // alert('test '+but.id);
         bigDiv.remove();
         sideEquivs.remove();
@@ -256,6 +259,8 @@ function addElement() { //add draggable divs
 
     bigDiv.appendChild(but);
     // side div div appending bigger side div
+    sideEquivs.id = "p-"+incrementalID+"-title";
+    sideEquivs.className += "p-list";
     sideEquivs.appendChild(sideTitle);
     // appending paragraphs to side div
     sideEquivs.appendChild(sideInput1);
@@ -269,15 +274,41 @@ function addElement() { //add draggable divs
     sideEquivs.appendChild(sideInput9);
 
     //append to final parents
-    ul.appendChild(bigDiv);
-    parentDiv.appendChild(sideEquivs);
+    if (addBelow) {
+        ul.appendChild(bigDiv);
+        parentDiv.appendChild(sideEquivs);
+    }
+    else {
+        ul.prepend(bigDiv);
+        parentDiv.prepend(sideEquivs);
+    }
 
     //increment ID
     incrementalID += 1;
+    renameDivs();
 }
+
+function renameDivs(){
+    var mainList = document.getElementById("sortable").getElementsByClassName("ui-state-default");
+    var secondList = document.getElementById("div-rightM").getElementsByClassName("p-list");
+
+    for(let i=0; i<mainList.length; i++){
+        var itemId = mainList[i].id;
+        var title = document.getElementById(itemId+'-title').childNodes[0];
+        var index = i+1;
+        title.innerText = "stop nr"+index;
+    }
+
+    for(let i=0; i<secondList.length; i++){
+        var title = document.getElementById(secondList[i].id).childNodes[0];
+        var index = i+1;
+        title.innerText = "stop nr"+index;
+    }
+}
+
 //check for mutations
-var mutationObserver = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
+var mutationObserver = new MutationObserver(function (mutations) {
+    mutations.forEach(function (mutation) {
         var ulTarget = mutation.target;
         //console.log(ulTarget);
         // for(let i=0; i<incrementalID; i++) {
@@ -302,49 +333,49 @@ $(document).ready(() => {
 
 //extras
 var numeron = 0;
-function goToNextPage(){
-    document.getElementById("Div"+ numeron).style.display = "none";
+function goToNextPage() {
+    document.getElementById("Div" + numeron).style.display = "none";
     numeron = numeron + 1;
-    if($('#Div'+ numeron).length === 0){
+    if ($('#Div' + numeron).length === 0) {
 
-        document.getElementById("fward"+numeron).disabled = true;
+        document.getElementById("fward" + numeron).disabled = true;
     }
     else {
-        document.getElementById("Div"+ numeron).style.display = "initial";
+        document.getElementById("Div" + numeron).style.display = "initial";
     }
     //var linkAct = document.getElementById("link" + numeron);
     //linkAct.setAttributeNode("href");
-    document.getElementById("link" + numeron).href="#Div" + numeron;
+    document.getElementById("link" + numeron).href = "#Div" + numeron;
     document.getElementById("link" + numeron).style.color = "blue";
     document.getElementById("link" + numeron).style.cursor = "default";
 
 }
 
-function goToPrevPage(){
-    document.getElementById("Div"+ numeron).style.display = "none";
+function goToPrevPage() {
+    document.getElementById("Div" + numeron).style.display = "none";
     numeron = numeron - 1;
-    document.getElementById("Div"+ numeron).style.display = "initial";
+    document.getElementById("Div" + numeron).style.display = "initial";
 
 
 }
-function goToStartDiv(){
+function goToStartDiv() {
     //if(document.getElementById("link0").href!="javascript: void(0)"){
-        document.querySelectorAll(".goThrough").forEach(a=>a.style.display = "none");
-        document.getElementById("Div0").style.display = "initial";
-        numeron = 0;
+    document.querySelectorAll(".goThrough").forEach(a => a.style.display = "none");
+    document.getElementById("Div0").style.display = "initial";
+    numeron = 0;
     //}
 }
 
-function goToSecondDiv(){
-    if(document.getElementById("link1").href!=="javascript: void(0)"){
-        document.querySelectorAll(".goThrough").forEach(a=>a.style.display = "none");
+function goToSecondDiv() {
+    if (document.getElementById("link1").href !== "javascript: void(0)") {
+        document.querySelectorAll(".goThrough").forEach(a => a.style.display = "none");
         document.getElementById("Div1").style.display = "block";
         numeron = 1;
     }
 }
 
-function goToThirdDiv(){
-    if(document.getElementById("link2").href!=="javascript: void(0)") {
+function goToThirdDiv() {
+    if (document.getElementById("link2").href !== "javascript: void(0)") {
         document.querySelectorAll(".goThrough").forEach(a => a.style.display = "none");
         document.getElementById("Div2").style.display = "block";
         numeron = 2;
