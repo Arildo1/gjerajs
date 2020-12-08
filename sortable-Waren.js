@@ -10,10 +10,10 @@ $(function () { //jQueryUI stuff
             iAfter = ui.item.index();
 
             evictee = $('#resultWarenSide div:eq(' + iAfter + ')');
-            evictor = $('#resultwarenSide div:eq(' + iBefore + ')');
+            evictor = $('#resultWarenSide div:eq(' + iBefore + ')');
 
             evicteeOne = $('#resultWarenBottom div:eq(' + iAfter + ')');
-            evictorOne = $('#resultwarenBottom div:eq(' + iBefore + ')');
+            evictorOne = $('#resultWarenBottom div:eq(' + iBefore + ')');
 
             evictee.replaceWith(evictor);
             if (iBefore > iAfter)

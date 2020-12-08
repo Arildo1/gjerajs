@@ -279,7 +279,7 @@ function addElement() { //add draggable divs
 var mutationObserver = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutation) {
         var ulTarget = mutation.target;
-        console.log(ulTarget);
+        //console.log(ulTarget);
         // for(let i=0; i<incrementalID; i++) {
         //     let input = document.getElementById('input-'+i);
         //     let paragraph = document.getElementById('para2-'+i);
